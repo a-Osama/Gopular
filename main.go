@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -18,22 +19,25 @@ type Response struct {
 	} `json:"search"`
 }
 
-const query = `query PopularRepos {
-	search(query: "stars:>1", type: REPOSITORY, first: 5) {
+var lang string
+
+var query = fmt.Sprintf(`query PopularRepos {
+	search(query: "language:%s stars:>1  created:>2020-04-29 ", type: REPOSITORY, first: %s) {
 	nodes {
 		... on Repository {
-		  
+
 		  nameWithOwner
 		  stargazerCount
 		  createdAt
 		}
 	  }
 	}
-  }`
+  }`, lang, "5")
 
 func main() {
 	client := graphql.NewClient("https://api.github.com/graphql")
 	// make a request to GitHub API
+	lang = "Go"
 	req := graphql.NewRequest(query)
 
 	var GithubToken = os.Getenv("GITHUB_TOKEN")
@@ -49,4 +53,5 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Println(respData.Search.Nodes)
+
 }
