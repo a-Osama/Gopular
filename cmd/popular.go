@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"text/tabwriter"
 
 	"github.com/machinebox/graphql"
 	"github.com/spf13/cobra"
@@ -71,6 +72,9 @@ func getPopularRepos(progLang, date string, count uint) {
 	req.Var("query", fmt.Sprintf("language:%s stars:>1 created:>%s", progLang, date))
 	//Get the github token from the enviroment variables
 	var GithubToken = os.Getenv("GITHUB_TOKEN")
+	if GithubToken == "" {
+		log.Fatalln("GithubToken is required")
+	}
 	req.Header.Add("Authorization", "bearer "+GithubToken)
 	// define a Context for the request
 	ctx := context.Background()
@@ -79,11 +83,17 @@ func getPopularRepos(progLang, date string, count uint) {
 	if err := client.Run(ctx, req, &respData); err != nil {
 		log.Fatal(err)
 	}
+	formatOutput(respData, count)
+
+}
+
+func formatOutput(response Response, count uint) {
+	writer := tabwriter.NewWriter(os.Stdout, 0, 8, 1, '\t', tabwriter.AlignRight)
+	fmt.Fprintln(writer, "Name/Owner\t Stars\t Publish Date")
 	var i uint
 	for i = 0; i < count; i++ {
-		fmt.Println(respData.Search.Nodes[i].NameWithOwner)
-		fmt.Println("Stars ", respData.Search.Nodes[i].StargazerCount)
-		fmt.Println(respData.Search.Nodes[i].CreatedAt)
+		fmt.Fprintln(writer, response.Search.Nodes[i].NameWithOwner+"\t", fmt.Sprint(response.Search.Nodes[i].StargazerCount)+"\t", response.Search.Nodes[i].CreatedAt+"\t")
 	}
+	writer.Flush()
 
 }
