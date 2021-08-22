@@ -1,0 +1,243 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /home/ahmed/Projects/Gopular
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 160
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 39
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 468
+    content: "\e]0;ahmed@laptop:~/Projects/Gopular\a\e[?2004h[ahmed@laptop Gopular]$ "
+  - delay: 1478
+    content: .
+  - delay: 1455
+    content: /
+  - delay: 381
+    content: g
+  - delay: 241
+    content: o
+  - delay: 300
+    content: p
+  - delay: 191
+    content: 'ular '
+  - delay: 604
+    content: "\r\n\e[?2004l\rGet the most starred public repositories of your favorite programming language:\r\n\r\nGopular helps you find the most popular repositories based on criteria like\r\nthe programming language of choice, created after a specific date, and how many you want.\r\n\r\nUsage:\r\n  gopular [command]\r\n\r\nAvailable Commands:\r\n  completion  generate the autocompletion script for the specified shell\r\n  help        Help about any command\r\n  popular     return most popular GitHub repositories\r\n\r\nFlags:\r\n  -h, --help   help for gopular\r\n\r\nUse \"gopular [command] --help\" for more information about a command.\r\n\e]0;ahmed@laptop:~/Projects/Gopular\a\e[?2004h[ahmed@laptop Gopular]$ "
+  - delay: 1315
+    content: './gopular '
+  - delay: 1148
+    content: p
+  - delay: 188
+    content: o
+  - delay: 181
+    content: p
+  - delay: 688
+    content: u
+  - delay: 463
+    content: l
+  - delay: 105
+    content: a
+  - delay: 274
+    content: r
+  - delay: 882
+    content: "\r\n\e[?2004l\r"
+  - delay: 897
+    content: "Name/Owner\t\t Stars\t Publish Date\r\ngolang/go\t\t 89016\t 2014-08-19T04:33:40Z\t\r\nkubernetes/kubernetes\t 80242\t 2014-06-06T22:56:04Z\t\r\navelino/awesome-go\t 67459\t 2014-07-06T13:42:15Z\t\r\ngin-gonic/gin\t\t 50730\t 2014-06-16T23:57:25Z\t\r\nfatedier/frp\t\t 47721\t 2015-12-21T15:24:59Z\t\r\nv2ray/v2ray-core\t 37929\t 2015-09-04T11:42:53Z\t\r\ngogs/gogs\t\t 37538\t 2014-02-12T01:57:08Z\t\r\ntraefik/traefik\t\t 34780\t 2015-09-13T19:04:02Z\t\r\ncaddyserver/caddy\t 34324\t 2015-01-13T19:45:03Z\t\r\nFiloSottile/mkcert\t 31409\t 2018-06-25T05:33:03Z\t\r\n\e]0;ahmed@laptop:~/Projects/Gopular\a\e[?2004h[ahmed@laptop Gopular]$ "
+  - delay: 792
+    content: ./gopular popular
+  - delay: 590
+    content: ' '
+  - delay: 483
+    content: '-'
+  - delay: 151
+    content: '-'
+  - delay: 1409
+    content: p
+  - delay: 113
+    content: ' '
+  - delay: 1810
+    content: r
+  - delay: 215
+    content: e
+  - delay: 297
+    content: "\b\e[K"
+  - delay: 337
+    content: u
+  - delay: 81
+    content: s
+  - delay: 524
+    content: t
+  - delay: 501
+    content: "\r\n\e[?2004l\r"
+  - delay: 884
+    content: "Name/Owner\t\t\t Stars\t Publish Date\r\n996icu/996.ICU\t\t\t 258321\t 2019-03-26T07:31:14Z\t\r\ndenoland/deno\t\t\t 77390\t 2018-05-15T01:34:26Z\t\r\nalacritty/alacritty\t\t 34269\t 2016-02-18T05:02:30Z\t\r\nsharkdp/bat\t\t\t 28954\t 2018-04-21T10:52:23Z\t\r\nBurntSushi/ripgrep\t\t 26836\t 2016-03-11T02:02:33Z\t\r\nrust-unofficial/awesome-rust\t 21432\t 2014-07-17T10:45:10Z\t\r\ntauri-apps/tauri\t\t 21317\t 2019-07-13T09:09:37Z\t\r\nxi-editor/xi-editor\t\t 18758\t 2016-04-26T23:03:23Z\t\r\nsharkdp/fd\t\t\t 18623\t 2017-05-09T21:27:10Z\t\r\nstarship/starship\t\t 18233\t 2019-04-02T03:23:12Z\t\r\n\e]0;ahmed@laptop:~/Projects/Gopular\a\e[?2004h[ahmed@laptop Gopular]$ "
+  - delay: 547
+    content: ./gopular popular --p rust
+  - delay: 704
+    content: ' '
+  - delay: 502
+    content: '-'
+  - delay: 130
+    content: '-'
+  - delay: 844
+    content: '1'
+  - delay: 206
+    content: '5'
+  - delay: 899
+    content: "\b"
+  - delay: 166
+    content: "\b"
+  - delay: 196
+    content: "c15\b\b"
+  - delay: 367
+    content: " 15\b\b"
+  - delay: 1394
+    content: "\r\n\e[?2004l\r"
+  - delay: 770
+    content: "Name/Owner\t\t\t Stars\t Publish Date\r\n996icu/996.ICU\t\t\t 258321\t 2019-03-26T07:31:14Z\t\r\ndenoland/deno\t\t\t 77390\t 2018-05-15T01:34:26Z\t\r\nalacritty/alacritty\t\t 34269\t 2016-02-18T05:02:30Z\t\r\nsharkdp/bat\t\t\t 28954\t 2018-04-21T10:52:23Z\t\r\nBurntSushi/ripgrep\t\t 26836\t 2016-03-11T02:02:33Z\t\r\nrust-unofficial/awesome-rust\t 21432\t 2014-07-17T10:45:10Z\t\r\ntauri-apps/tauri\t\t 21317\t 2019-07-13T09:09:37Z\t\r\nxi-editor/xi-editor\t\t 18758\t 2016-04-26T23:03:23Z\t\r\nsharkdp/fd\t\t\t 18623\t 2017-05-09T21:27:10Z\t\r\nstarship/starship\t\t 18233\t 2019-04-02T03:23:12Z\t\r\nrust-lang/rustlings\t\t 18028\t 2015-09-15T02:25:18Z\t\r\nyewstack/yew\t\t\t 16735\t 2017-12-16T14:19:02Z\t\r\ndiem/diem\t\t\t 15962\t 2019-04-02T21:51:45Z\t\r\nmeilisearch/MeiliSearch\t\t 15944\t 2018-04-23T11:45:28Z\t\r\nfirecracker-microvm/firecracker\t 15927\t 2017-10-19T06:18:47Z\t\r\n\e]0;ahmed@laptop:~/Projects/Gopular\a\e[?2004h[ahmed@laptop Gopular]$ "
+  - delay: 3877
+    content: ./gopular popular --p rust --c 15
+  - delay: 746
+    content: ' '
+  - delay: 410
+    content: '-'
+  - delay: 153
+    content: '-'
+  - delay: 256
+    content: d
+  - delay: 272
+    content: ' '
+  - delay: 1029
+    content: '2'
+  - delay: 149
+    content: '0'
+  - delay: 1010
+    content: '2'
+  - delay: 446
+    content: '1'
+  - delay: 2041
+    content: '='
+  - delay: 964
+    content: "\b\e[K"
+  - delay: 113
+    content: '-'
+  - delay: 1960
+    content: '0'
+  - delay: 139
+    content: '1'
+  - delay: 300
+    content: '-'
+  - delay: 518
+    content: '0'
+  - delay: 116
+    content: '1'
+  - delay: 336
+    content: "\r\n\e[?2004l\r"
+  - delay: 784
+    content: "Name/Owner\t\t\t\t Stars\t Publish Date\r\ntonarino/innernet\t\t\t 2337\t 2021-03-29T17:17:27Z\t\r\nhora-search/hora\t\t\t 1985\t 2021-05-15T07:46:32Z\t\r\nflaneur2020/pua-lang\t\t\t 1885\t 2021-04-18T13:40:46Z\t\r\nTaKO8Ki/awesome-alternatives-in-rust\t 1878\t 2021-05-25T13:09:41Z\t\r\nekzhang/rustpad\t\t\t\t 1658\t 2021-06-01T03:58:36Z\t\r\ntokio-rs/axum\t\t\t\t 1483\t 2021-05-30T09:22:25Z\t\r\nzhuowei/nft_ptr\t\t\t\t 1389\t 2021-04-01T04:07:55Z\t\r\nsayanarijit/xplr\t\t\t 1299\t 2021-02-24T20:42:17Z\t\r\ncontainers/youki\t\t\t 1296\t 2021-03-27T11:06:58Z\t\r\njvns/dnspeep\t\t\t\t 1031\t 2021-03-28T17:59:46Z\t\r\nfacundoolano/rpg-cli\t\t\t 931\t 2021-04-23T22:29:19Z\t\r\nDaniel-Liu-c0deb0t/uwu\t\t\t 890\t 2021-03-17T01:18:00Z\t\r\nawslabs/aws-sdk-rust\t\t\t 857\t 2021-04-12T17:37:24Z\t\r\napache/arrow-datafusion\t\t\t 837\t 2021-04-17T15:40:23Z\t\r\nskyward-finance/contracts\t\t 820\t 2021-04-28T01:02:09Z\t\r\n\e]0;ahmed@laptop:~/Projects/Gopular\a\e[?2004h[ahmed@laptop Gopular]$ "
+  - delay: 3796
+    content: "\e[?2004l\r\r\nlogout\r\n"
