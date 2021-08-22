@@ -17,7 +17,7 @@ CLI tool for fetching the most popular repositories written in Go.
     ```
 
 3.  Usage:
-    gopular popular [flags]
+    ./gopular popular [flags]
 
     Flags:
 
