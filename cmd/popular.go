@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"text/tabwriter"
 
 	"github.com/machinebox/graphql"
 	"github.com/spf13/cobra"
@@ -43,7 +44,7 @@ type Response struct {
 	} `json:"search"`
 }
 
-//GraphQL Query
+//GraphQL Query with two request variables.
 var query = `query PopularRepos($first: Int = 10, $query: String!) {
 	search(query: $query, type: REPOSITORY, first: $first) {
 	  nodes {
@@ -56,31 +57,43 @@ var query = `query PopularRepos($first: Int = 10, $query: String!) {
 	}
   }`
 
+//Initiate the client to the GraphQL API, and bind the query to the request.
+//Add the request variable to the query using the values of the flags.
+//Run it and capture the response.
+//Format the Response.
+//TODO make a function to format the response
 func getPopularRepos(progLang, date string, count uint) {
+
 	client := graphql.NewClient("https://api.github.com/graphql")
+
 	// make a request to GitHub API
 	req := graphql.NewRequest(query)
-
 	req.Var("first", count)
 	req.Var("query", fmt.Sprintf("language:%s stars:>1 created:>%s", progLang, date))
-
+	//Get the github token from the enviroment variables
 	var GithubToken = os.Getenv("GITHUB_TOKEN")
+	if GithubToken == "" {
+		log.Fatalln("GithubToken is required")
+	}
 	req.Header.Add("Authorization", "bearer "+GithubToken)
-
 	// define a Context for the request
 	ctx := context.Background()
-
-	// run it and capture the response
 
 	var respData Response
 	if err := client.Run(ctx, req, &respData); err != nil {
 		log.Fatal(err)
 	}
+	formatOutput(respData, count)
+
+}
+
+func formatOutput(response Response, count uint) {
+	writer := tabwriter.NewWriter(os.Stdout, 0, 8, 1, '\t', tabwriter.AlignRight)
+	fmt.Fprintln(writer, "Name/Owner\t Stars\t Publish Date")
 	var i uint
 	for i = 0; i < count; i++ {
-		fmt.Println(respData.Search.Nodes[i].NameWithOwner)
-		fmt.Println("Stars ", respData.Search.Nodes[i].StargazerCount)
-		fmt.Println(respData.Search.Nodes[i].CreatedAt)
+		fmt.Fprintln(writer, response.Search.Nodes[i].NameWithOwner+"\t", fmt.Sprint(response.Search.Nodes[i].StargazerCount)+"\t", response.Search.Nodes[i].CreatedAt+"\t")
 	}
+	writer.Flush()
 
 }
