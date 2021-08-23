@@ -89,7 +89,7 @@ func getPopularRepos(progLang, date string, count uint) {
 
 func formatOutput(response Response, count uint) {
 	writer := tabwriter.NewWriter(os.Stdout, 0, 8, 1, '\t', tabwriter.AlignRight)
-	fmt.Fprintln(writer, "Name/Owner\t Stars\t Publish Date")
+	fmt.Fprintln(writer, "Owner/Name\t Stars\t Publish Date")
 	var i uint
 	for i = 0; i < count; i++ {
 		fmt.Fprintln(writer, response.Search.Nodes[i].NameWithOwner+"\t", fmt.Sprint(response.Search.Nodes[i].StargazerCount)+"\t", response.Search.Nodes[i].CreatedAt+"\t")
