@@ -13,5 +13,4 @@ WORKDIR /
 
 COPY --from=build /gopular /gopular
 
-
 ENTRYPOINT ["/gopular", "popular"]
