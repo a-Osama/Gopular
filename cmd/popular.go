@@ -46,7 +46,7 @@ func init() {
 
 //GraphQL Query with two request variables.
 var query = `query PopularRepos($count: Int = 10, $qry: String!) {
-	search(query: $qry, type: REPOSITORY, first: $first) {
+	search(query: $qry, type: REPOSITORY, first: $count) {
 	  nodes {
 		... on Repository {
 		  nameWithOwner
