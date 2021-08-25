@@ -32,4 +32,3 @@ CLI tool for fetching the most popular repositories written in Go.
 - [x] Get popular repositories created after specific date.
 - [x] Control the number of fetched repositories.
 - [x] Build the tool using cobra.
-- [ ] Test.
