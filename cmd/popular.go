@@ -22,6 +22,12 @@ type Response struct {
 	} `json:"search"`
 }
 
+type Request struct {
+	PrgLanguage string
+	Date        string
+	Count       uint
+}
+
 var popularCmd = &cobra.Command{
 	Use:   "popular",
 	Short: "return most popular GitHub repositories",
@@ -29,10 +35,11 @@ var popularCmd = &cobra.Command{
 
 You could configure it to return public repos based on PROGRAMMING LANGUAGE, PUPLISH DATE, and how many RESULTS you want.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		prgLanguage, _ := cmd.Flags().GetString("p")
-		date, _ := cmd.Flags().GetString("d")
-		count, _ := cmd.Flags().GetUint("c")
-		getPopularRepos(prgLanguage, date, count)
+		var req Request
+		req.PrgLanguage, _ = cmd.Flags().GetString("p")
+		req.Date, _ = cmd.Flags().GetString("d")
+		req.Count, _ = cmd.Flags().GetUint("c")
+		getPopularRepos(req)
 	},
 }
 
@@ -67,9 +74,9 @@ func getGitHubToken() (string, error) {
 }
 
 //takes request, programming language, date, and counter
-func reqFormating(req *graphql.Request, p, d string, c uint) {
-	req.Var("count", c)
-	req.Var("qry", fmt.Sprintf("language:%s stars:>1 created:>%s", p, d))
+func reqFormating(req *graphql.Request, r Request) {
+	req.Var("count", r.Count)
+	req.Var("qry", fmt.Sprintf("language:%s stars:>1 created:>%s", r.PrgLanguage, r.Date))
 }
 
 //takes the response and format it as a nice table
@@ -85,13 +92,13 @@ func outputFormating(response Response, count uint) {
 	writer.Flush()
 }
 
-func getPopularRepos(prgLanguage, date string, count uint) Response {
+func getPopularRepos(r Request) Response {
 	var response Response
 	client := graphql.NewClient("https://api.github.com/graphql")
 	// make a request to GitHub API
 	req := graphql.NewRequest(query)
 	// Add the request variable to the query using the values of the flags.
-	reqFormating(req, prgLanguage, date, count)
+	reqFormating(req, r)
 	//Get the github token from the enviroment variables
 	gt, err := getGitHubToken()
 	if err != nil {
@@ -103,6 +110,6 @@ func getPopularRepos(prgLanguage, date string, count uint) Response {
 	if err := client.Run(ctx, req, &response); err != nil {
 		log.Fatal(err)
 	}
-	outputFormating(response, count)
+	outputFormating(response, r.Count)
 	return response
 }
